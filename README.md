@@ -32,17 +32,22 @@ cd vue-element-admin-template
 npm config set registry https://registry.npm.taobao.org
 npm config set disturl https://npm.taobao.org/dist
 
+# 卸载旧版本的 vue-cli
+npm uninstall vue-cli -g
+# 全局安装最新版 vue-cli
+npm install -g @vue/cli
+
 # 安装依赖
 npm install
 
-# 启动开发模式，调用实际接口
-npm run dev
-
 # 启动mock模式，使用本地mock数据
 npm run mock
+
+# 启动开发模式，调用实际接口
+npm run dev
 ```
 
-浏览器访问：http://localhost:6060
+浏览器访问：http://localhost:9527
 
 ## 发布
 
