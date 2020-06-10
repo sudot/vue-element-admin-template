@@ -59,8 +59,6 @@ npm run stage
 npm run build
 ```
 
-## 其它
-
 ```bash
 # 预览发布环境效果
 npm run preview
@@ -75,3 +73,55 @@ npm run lint
 npm run lint -- --fix
 ```
 
+## 新增一个页面
+
+### 命名规范
+
+其实刚开始我写 vue 文件的时候也不注意，各种驼峰啊、`大写开头 (PascalCase)`还是`横线连接 (kebab-case)`混着来，谁叫 vue 都可以，在 [风格指南](https://cn.vuejs.org/v2/style-guide/) 中也没有定论。不过基于本项目我还是整理了一套文件的命名规则。
+
+#### Component
+
+所有的 `Component` 文件都是以大写开头 (PascalCase)，这也是官方所 [推荐的](https://cn.vuejs.org/v2/style-guide/index.html#单文件组件文件的大小写-强烈推荐)。
+
+但除了 `index.vue`。
+
+例子：
+
+- `@/src/components/BackToTop/index.vue`
+- `@/src/components/Charts/Line.vue`
+- `@/src/views/example/components/Button.vue`
+
+#### JS 文件
+
+所有的 `.js` 文件都遵循横线连接 (kebab-case)。
+
+例子：
+
+- `@/src/utils/open-window.js`
+- `@/src/views/svg-icons/require-icons.js`
+- `@/src/components/MarkdownEditor/default-options.js`
+
+#### Views
+
+在 `views` 文件下，代表路由的 `.vue` 文件都使用横线连接 (kebab-case)，代表路由的文件夹也是使用同样的规则。
+
+例子：
+
+- `@/src/views/svg-icons/index.vue`
+- `@/src/views/svg-icons/require-icons.js`
+
+使用横线连接 (kebab-case)来命名 `views` 主要是出于以下几个考虑。
+
+- 横线连接 (kebab-case) 也是官方推荐的命名规范之一 [文档](https://cn.vuejs.org/v2/style-guide/index.html#单文件组件文件的大小写-强烈推荐)
+- `views` 下的 `.vue` 文件代表的是一个路由，所以它需要和`component`进行区分(component 都是大写开头)
+- 页面的 `url` 也都是横线连接的，比如 `https://www.xxx.admin/export-excel`，所以路由对应的 `view` 应该要保持统一
+- 没有大小写敏感问题
+
+
+### 步骤分解
+ - 在 `src\views` 文件夹下新增一个模块,在此模块下新增你的页面
+ - 如果有自定义组件,则将组件放在此模块文件夹下的 `components` 文件夹
+ - 在 `src\router\index.js` 文件添加到此页面的路由
+ - 在 `src\api` 文件夹新增与模块同名的 js 文件编写后台请求
+ - 在 `mock` 文件夹新增与模块同名的 js 文件编写后台请求的模拟数据,再将此 js 文件在 `mock\mocks.js` 中导出
+ 

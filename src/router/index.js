@@ -52,12 +52,12 @@ export const constantRoutes = [
   {
     path: '/404',
     hidden: true,
-    component: () => import('@/views/errorPage/404')
+    component: () => import('@/views/error-page/404')
   },
   {
     path: '/401',
     hidden: true,
-    component: () => import('@/views/errorPage/401')
+    component: () => import('@/views/error-page/401')
   },
   {
     path: '',
