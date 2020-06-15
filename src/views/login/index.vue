@@ -5,12 +5,12 @@
       :model="loginForm"
       :rules="loginRules"
       class="login-form"
-      auto-complete="on"
+      autocomplete="on"
       label-position="left"
       size="medium"
     >
       <div class="title-container">
-        <h3 class="title">{{ $t('login.title') }}</h3>
+        <h3 class="title">登录</h3>
       </div>
 
       <el-form-item prop="username">
@@ -20,38 +20,44 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          :placeholder="$t('login.username')"
+          placeholder="Username"
           name="username"
           type="text"
-          auto-complete="on"
+          tabindex="1"
+          autocomplete="on"
         />
       </el-form-item>
 
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :key="passwordType"
-          ref="password"
-          v-model="loginForm.password"
-          :type="passwordType"
-          :placeholder="$t('login.password')"
-          name="password"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-        </span>
-      </el-form-item>
+      <el-tooltip v-model="capsTooltip" content="大写锁定已开启" placement="top" manual>
+        <el-form-item prop="password">
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+          <el-input
+            :key="passwordType"
+            ref="password"
+            v-model="loginForm.password"
+            :type="passwordType"
+            placeholder="Password"
+            name="password"
+            tabindex="2"
+            autocomplete="on"
+            @keyup.native="checkCapslock"
+            @blur="capsTooltip = false"
+            @keyup.enter.native="handleLogin"
+          />
+          <span class="show-pwd" @click="showPwd">
+            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+          </span>
+        </el-form-item>
+      </el-tooltip>
 
       <el-button
         :loading="loading"
         type="primary"
         class="login-button"
         @click.native.prevent="handleLogin"
-      >{{ $t('login.logIn') }}</el-button>
+      >登录</el-button>
     </el-form>
   </div>
 </template>
@@ -72,15 +78,22 @@ export default {
         password: [{ required: true, trigger: 'blur', message: '密码不能为空' }]
       },
       passwordType: 'password',
+      capsTooltip: false,
       loading: false,
-      redirect: undefined
+      redirect: undefined,
+      otherQuery: {}
     }
   },
   watch: {
     $route: {
       handler: function(route) {
-        this.redirect = route.query && route.query.redirect
-      }
+        const query = route.query
+        if (query) {
+          this.redirect = query.redirect
+          this.otherQuery = this.getOtherQuery(query)
+        }
+      },
+      immediate: true
     }
   },
   created() {
@@ -97,6 +110,10 @@ export default {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
+    checkCapslock(e) {
+      const { key } = e
+      this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -113,10 +130,9 @@ export default {
           return false
         }
         this.loading = true
-        this.$store
-          .dispatch('user/login', this.loginForm)
+        this.$store.dispatch('user/login', this.loginForm)
           .then(() => {
-            this.$router.push({ path: this.redirect || '/' })
+            this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             this.loading = false
           })
           .catch(error => {
@@ -126,6 +142,14 @@ export default {
             this.loading = false
           })
       })
+    },
+    getOtherQuery(query) {
+      return Object.keys(query).reduce((acc, cur) => {
+        if (cur !== 'redirect') {
+          acc[cur] = query[cur]
+        }
+        return acc
+      }, {})
     }
   }
 }
@@ -196,6 +220,18 @@ $light_gray: #eee;
     padding: 160px 35px 0;
     margin: 0 auto;
     overflow: hidden;
+  }
+
+  .tips {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 10px;
+
+    span {
+      &:first-of-type {
+        margin-right: 16px;
+      }
+    }
   }
 
   .svg-container {

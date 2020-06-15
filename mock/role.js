@@ -1,4 +1,4 @@
-import Mock from 'mockjs'
+const Mock = require('mockjs')
 
 const roleList = Mock.mock({
   'list|100-300': [
@@ -43,7 +43,7 @@ const permissions = [
   }
 ]
 
-export default [
+module.exports = [
   {
     url: '/roles/search',
     type: 'post',

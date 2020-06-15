@@ -1,12 +1,12 @@
-import Mock from 'mockjs'
+const Mock = require('mockjs')
 
-export default [
+module.exports = [
 
   {
     url: '/configs',
     type: 'get',
     response: config => {
-      return { sinaShortUrlAppKey: ['123'] }
+      return { sinaShortUrlAppKey: ['123'].join(',') }
     }
   },
 

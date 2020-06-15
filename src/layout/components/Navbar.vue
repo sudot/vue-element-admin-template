@@ -1,8 +1,8 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
-    <breadcrumb class="breadcrumb-container" />
+    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
     <div class="right-menu">
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click" @command="handleCommand">
@@ -11,10 +11,10 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/"><el-dropdown-item>{{ $t('navbar.dashboard') }}</el-dropdown-item></router-link>
+          <router-link to="/"><el-dropdown-item>首页</el-dropdown-item></router-link>
           <router-link to="/setting"><el-dropdown-item divided>个人设置</el-dropdown-item></router-link>
           <el-dropdown-item divided :command="()=>{changePasswordSubmitData = {};showChangePassword = true}">修改密码</el-dropdown-item>
-          <el-dropdown-item divided :command="logout">{{ $t('navbar.logOut') }}</el-dropdown-item>
+          <el-dropdown-item divided :command="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -32,8 +32,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="showChangePassword = false">{{ $t('table.cancel') }}</el-button>
-        <el-button type="primary" @click="handleChangePassword">{{ $t('table.confirm') }}</el-button>
+        <el-button @click="showChangePassword = false">取 消</el-button>
+        <el-button type="primary" @click="handleChangePassword">确 定</el-button>
       </span>
     </el-dialog>
   </div>

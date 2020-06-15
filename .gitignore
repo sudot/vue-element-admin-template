@@ -10,6 +10,7 @@
 !plop-templates
 !public
 !src
+!tests
 !.editorconfig
 !.env.development
 !.env.mock
@@ -22,9 +23,10 @@
 !.travis.yml
 !babel.config.js
 !jest.config.js
-!package-lock.json
+!jsconfig.json
 !package.json
 !plopfile.js
+!postcss.config.js
 !README.md
 !vue.config.js
 

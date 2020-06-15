@@ -1,8 +1,4 @@
-import variables from '@/styles/element-variables.scss'
-
-export default {
-  theme: variables.theme,
-
+module.exports = {
   /**
    * @type {boolean} true | false
    * @description Whether show the settings right-panel
@@ -22,10 +18,10 @@ export default {
   sidebarLogo: true,
 
   /**
-   * @type {string | array} 'production' | ['production','development']
+   * @type {string | array} 'production' | ['production', 'development']
    * @description Need show err logs component.
    * The default is only used in the production env
-   * If you want to also use it in dev, you can pass ['production','development']
+   * If you want to also use it in dev, you can pass ['production', 'development']
    */
   errorLog: 'production'
 }

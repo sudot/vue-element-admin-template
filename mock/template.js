@@ -1,4 +1,4 @@
-import Mock from 'mockjs'
+const Mock = require('mockjs')
 
 const baseContent = '<p>我是测试数据我是测试数据</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>'
 const imageUri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70b3'
@@ -18,7 +18,7 @@ const list = Mock.mock({
   ]
 }).list
 
-export default [
+module.exports = [
   {
     url: '/templates/search',
     type: 'post',

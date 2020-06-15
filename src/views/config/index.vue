@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       submitData: {
-        sinaShortUrlAppKey: []
+        sinaShortUrlAppKey: ''
       },
       loading: false,
       rules: {

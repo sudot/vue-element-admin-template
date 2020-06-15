@@ -51,6 +51,7 @@ import { mapGetters } from 'vuex'
 import Sticky from '@/components/Sticky' // 粘性header组件
 
 export default {
+  name: 'Setting',
   components: { Sticky },
   data() {
     return {
@@ -61,7 +62,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['systemProperties', 'user', 'token'])
+    ...mapGetters(['system-properties', 'user', 'token'])
   },
   created() {
     this.refresh()
@@ -70,7 +71,7 @@ export default {
     refresh() {
       this.$store.dispatch('user/getInfo').then(this.loadSetting)
       this.$store
-        .dispatch('systemProperties/loadSystemProperties')
+        .dispatch('system-properties/loadSystemProperties')
         .then(this.loadSetting)
     },
     loadSetting() {

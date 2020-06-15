@@ -1,6 +1,6 @@
 ## 简介
 
-本项目使用了一个项目模版：[vue-element-admin](https://panjiachen.github.io/vue-element-admin) ，它基于 [vue](https://github.com/vuejs/vue) 和 [element-ui](https://github.com/ElemeFE/element) 实现。它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件。
+本项目使用了一个项目模版：[vue-element-admin](https://panjiachen.github.io/vue-element-admin) ，它基于 [vue](https://github.com/vuejs/vue) 和 [element-ui](https://github.com/ElemeFE/element) 实现。它使用了最新的前端技术栈，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件。
 
 ## 前序准备
 

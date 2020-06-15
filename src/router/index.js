@@ -19,7 +19,7 @@ import Layout from '@/layout'
  * meta : {
     permissions: ['admin','editor'] control the page permissions (you can set multiple permissions)
     title: 'title'                  the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'                the icon show in the sidebar
+    icon: 'svg-name'/'el-icon-x'    the icon show in the sidebar
     noCache: true                   if set true, the page will no be cached(default is false)
     affix: true                     if set true, the tag will affix in the tags-view
     breadcrumb: false               if set false, the item will hidden in breadcrumb(default is true)
@@ -39,36 +39,41 @@ export const constantRoutes = [
     hidden: true,
     children: [
       {
-        path: '/redirect/:path*',
+        path: '/redirect/:path(.*)',
         component: () => import('@/views/redirect/index')
       }
     ]
   },
   {
     path: '/login',
-    hidden: true,
-    component: () => import('@/views/login/index')
+    component: () => import('@/views/login/index'),
+    hidden: true
+  },
+  {
+    path: '/auth-redirect',
+    component: () => import('@/views/login/auth-redirect'),
+    hidden: true
   },
   {
     path: '/404',
-    hidden: true,
-    component: () => import('@/views/error-page/404')
+    component: () => import('@/views/error-page/404'),
+    hidden: true
   },
   {
     path: '/401',
-    hidden: true,
-    component: () => import('@/views/error-page/401')
+    component: () => import('@/views/error-page/401'),
+    hidden: true
   },
   {
-    path: '',
+    path: '/',
     component: Layout,
-    redirect: 'dashboard',
+    redirect: '/dashboard',
     children: [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'dashboard', icon: 'dashboard' }
+        meta: { title: '首页', icon: 'dashboard', affix: true }
       }, {
         path: 'setting',
         component: () => import('@/views/dashboard/setting'),
@@ -83,7 +88,7 @@ export const constantRoutes = [
 /**
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user permissions
-*/
+ */
 export const asyncRoutes = [
   {
     path: '/template',
@@ -139,11 +144,11 @@ export const asyncRoutes = [
     ]
   },
 
+  // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  base: process.env.VUE_APP_BASE_URL,
   mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes

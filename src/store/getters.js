@@ -1,7 +1,6 @@
 const getters = {
-  systemProperties: state => state.systemProperties,
+  system_properties: state => state['system-properties'],
   sidebar: state => state.app.sidebar,
-  language: state => state.app.language,
   size: state => state.app.size,
   device: state => state.app.device,
   token: state => state.user.token,

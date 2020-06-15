@@ -1,10 +1,11 @@
-import Mock from 'mockjs'
-import mocks from './mocks'
-import { param2Obj } from '../src/utils'
+const Mock = require('mockjs')
+const { param2Obj } = require('./utils')
+const mocks = require('./mocks')
 
-const MOCK_API_BASE = process.env.VUE_APP_BASE_API
-
-export function mockXHR() {
+// for front mock
+// please use it cautiously, it will redefine XMLHttpRequest,
+// which will cause many of your third-party libraries to be invalidated(like progress event).
+function mockXHR() {
   // 修复在使用 MockJS 情况下，设置 withCredentials = true，且未被拦截的跨域请求丢失 Cookies 的问题
   // https://github.com/nuysoft/Mock/issues/300
   Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send
@@ -42,16 +43,7 @@ export function mockXHR() {
   }
 }
 
-const responseFake = (url, type, respond) => {
-  return {
-    url: new RegExp(`${MOCK_API_BASE}${url}`),
-    type: type || 'get',
-    response(req, res) {
-      res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
-    }
-  }
+module.exports = {
+  mocks,
+  mockXHR
 }
-
-export default mocks.map(route => {
-  return responseFake(route.url, route.type, route.response)
-})

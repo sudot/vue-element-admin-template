@@ -1,4 +1,4 @@
-import Mock from 'mockjs'
+const Mock = require('mockjs')
 const tokens = {
   admin: {
     token: 'admin-token'
@@ -38,7 +38,7 @@ const list = Mock.mock({
     'isAdmin': '@boolean()',
   }]
 }).list
-export default [
+module.exports = [
   // user login
   {
     url: '/login',

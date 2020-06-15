@@ -35,14 +35,14 @@
         type="primary"
         icon="el-icon-search"
         @click="handleFilter"
-      >{{ $t('table.search') }}</el-button>
-      <el-button class="filter-item" @click="handleReset">{{ $t('table.reset') }}</el-button>
+      >搜索</el-button>
+      <el-button class="filter-item" @click="handleReset">重置</el-button>
       <el-button
         class="filter-item"
         type="success"
         icon="el-icon-edit"
         @click="showUpdateDialog({})"
-      >{{ $t('table.add') }}</el-button>
+      >添加</el-button>
     </div>
 
     <el-table
@@ -54,11 +54,11 @@
       height="calc(100vh - 142px)"
     >
       <el-table-column prop="name" label="权限组" />
-      <el-table-column :label="$t('table.actions')">
+      <el-table-column label="操作">
         <template slot-scope="{row}">
-          <el-button type="primary" @click="showUpdateDialog(row)">{{ $t('table.edit') }}</el-button>
+          <el-button type="primary" @click="showUpdateDialog(row)">编辑</el-button>
           <template v-if="row.isAdmin">内置角色不可删除</template>
-          <el-button v-else type="danger" @click="handleDelete(row)">{{ $t('table.delete') }}</el-button>
+          <el-button v-else type="danger" @click="handleDelete(row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -104,8 +104,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="addDialogVisible = false">{{ $t('table.cancel') }}</el-button>
-        <el-button type="primary" @click="handleUpdate">{{ $t('table.confirm') }}</el-button>
+        <el-button @click="addDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="handleUpdate">确 定</el-button>
       </span>
     </el-dialog>
   </div>

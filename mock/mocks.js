@@ -1,9 +1,9 @@
-import user from './user'
-import role from './role'
-import template from './template'
-import config from './config'
+const user = require('./user')
+const role = require('./role')
+const template = require('./template')
+const config = require('./config')
 
-export default [
+module.exports = [
   ...user,
   ...role,
   ...template,

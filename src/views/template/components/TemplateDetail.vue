@@ -132,7 +132,7 @@ export default {
     }
   },
   created() {
-    this.height = document.body.clientHeight - 380
+    // this.height = document.body.clientHeight - 380
     this.fetchData(this.$route.params && this.$route.params.id)
   },
   mounted() {
@@ -179,7 +179,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.createPost-container .createPost-main-container {
-  width: calc(100% - 364px - 20px);
+.createPost-container {
+  position: relative;
+  .createPost-main-container {
+    float: left;
+    padding: 0px 20px;
+    width: calc(100% - 364px - 20px);
+  }
 }
 </style>

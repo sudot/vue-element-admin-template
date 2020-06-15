@@ -12,14 +12,14 @@
         type="primary"
         icon="el-icon-search"
         @click="handleFilter"
-      >{{ $t('table.search') }}</el-button>
-      <el-button class="filter-item" @click="handleReset">{{ $t('table.reset') }}</el-button>
+      >搜索</el-button>
+      <el-button class="filter-item" @click="handleReset">重置</el-button>
       <el-button
         class="filter-item"
         type="success"
         icon="el-icon-edit"
         @click="showUpdateDialog({})"
-      >{{ $t('table.add') }}</el-button>
+      >添加</el-button>
     </div>
 
     <el-table
@@ -39,13 +39,13 @@
       <el-table-column prop="lockDate" label="锁定日期" />
       <el-table-column prop="lastLoginIp" label="最后登录IP" />
       <el-table-column prop="lastLoginDate" label="最后登录日期" />-->
-      <el-table-column :label="$t('table.actions')" width="250">
+      <el-table-column label="操作" align="center" width="250">
         <template slot-scope="{row}">
           <template v-if="row.username == 'admin'">内置人员不可操作</template>
           <template v-else-if="!row.deleted">
-            <el-button type="primary" @click="showUpdateDialog(row)">{{ $t('table.edit') }}</el-button>
+            <el-button type="primary" @click="showUpdateDialog(row)">编辑</el-button>
             <el-button type="success" @click="handleResetPassword(row)">重置密码</el-button>
-            <el-button type="danger" @click="handleDelete(row)">{{ $t('table.delete') }}</el-button>
+            <el-button type="danger" @click="handleDelete(row)">删除</el-button>
           </template>
           <template v-else>已删除用户不可操作</template>
         </template>
@@ -85,12 +85,12 @@
         <el-alert
           type="error"
           :closable="false"
-          :title="'默认密码:' + systemProperties.defaultPassword"
+          :title="'默认密码:' + system_properties.defaultPassword"
         />
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="addDialogVisible = false">{{ $t('table.cancel') }}</el-button>
-        <el-button type="primary" @click="handleUpdate">{{ $t('table.confirm') }}</el-button>
+        <el-button @click="addDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="handleUpdate">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -111,7 +111,6 @@ const resetSubmitData = {
   enabled: true // 是否启用
 }
 export default {
-  name: 'UserList',
   components: { Pagination },
   data() {
     return {
@@ -136,7 +135,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['systemProperties'])
+    ...mapGetters(['system_properties'])
   },
   created() {
     this.getList()

@@ -12,10 +12,10 @@
         type="primary"
         icon="el-icon-search"
         @click="handleFilter"
-      >{{ $t('table.search') }}</el-button>
-      <el-button class="filter-item" @click="handleReset">{{ $t('table.reset') }}</el-button>
+      >搜索</el-button>
+      <el-button class="filter-item" @click="handleReset">重置</el-button>
       <router-link to="/template/create">
-        <el-button class="filter-item" type="success" icon="el-icon-edit">{{ $t('table.add') }}</el-button>
+        <el-button class="filter-item" type="success" icon="el-icon-edit">添加</el-button>
       </router-link>
     </div>
 
@@ -28,20 +28,20 @@
       height="calc(100vh - 142px)"
       @row-dblclick="handlePreview"
     >
-      <el-table-column :label="$t('table.id')" type="index" align="center" width="60" />
+      <el-table-column label="序号" type="index" align="center" width="60" />
       <el-table-column prop="title" label="模板名称" width="200" />
       <el-table-column prop="digest" label="摘要" />
-      <el-table-column label="创建时间" width="120px" align="center">
+      <el-table-column label="创建时间" width="150px" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.createdDate | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.actions')" align="center" width="150">
+      <el-table-column label="操作" align="center" width="150">
         <template slot-scope="{row}">
           <router-link :to="'/template/edit/' + row.id">
-            <el-button type="primary" size="mini">{{ $t('table.edit') }}</el-button>
+            <el-button type="primary">编辑</el-button>
           </router-link>
-          <el-button type="danger" size="mini" @click="handleDelete(row)">{{ $t('table.delete') }}</el-button>
+          <el-button type="danger" @click="handleDelete(row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
