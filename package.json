@@ -4,8 +4,8 @@
   "description": "A magical vue admin. An out-of-box UI solution for enterprise applications. Newest development stack of vue. Lots of awesome features",
   "author": "唐家林 <taogarfield@hotmail.com>",
   "scripts": {
-    "mock": "vue-cli-service serve --mode mock",
-    "dev": "vue-cli-service serve",
+    "mock": "vue-cli-service serve --mode mock --open",
+    "dev": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",

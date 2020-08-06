@@ -16,7 +16,7 @@ const port = process.env.port || process.env.npm_config_port || 9527 // dev port
 
 const devServer = {
   port: port,
-  open: true,
+  open: false,
   overlay: {
     warnings: false,
     errors: true
